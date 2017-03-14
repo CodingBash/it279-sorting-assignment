@@ -1,11 +1,10 @@
 #ifndef GUARD_NODEQUEUE_H
 #define GUARD_NODEQUEUE_H
-#include <string>
 
 namespace LinkedListNS {
 	struct NodeData {
 	public:
-		std::string name;
+		int number;
 	};
 
 	class Node {

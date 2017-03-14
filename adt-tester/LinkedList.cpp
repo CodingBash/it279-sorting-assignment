@@ -24,37 +24,64 @@ LinkedListNS::LinkedList::~LinkedList() {
 	}
 }
 
-// TODO: THIS IS WRONG - it pushes to the front
 void LinkedListNS::LinkedList::push_back(LinkedListNS::NodeData data) {
 	if (!this->head) {
-		this->head = new LinkedListNS::Node(data);
-		head->setNext(NULL);
+		LinkedListNS::Node* newNode = new LinkedListNS::Node(data);
+		this->head = newNode;
+		this->tail = newNode;
+		head->setNext(0);
+		tail->setNext(0);
 	}
 	else {
 		LinkedListNS::Node* newNode = new LinkedListNS::Node(data);
-		newNode->setNext(head);
-		head = newNode;
+		tail->setNext(newNode);
+		tail = newNode;
 	}
 	++length;
 }
 
 void LinkedListNS::LinkedList::insert(int index, LinkedListNS::NodeData data) {
-	if (this->size() <= index || index <= this->size()) {
+	if (this->size() < index || index < 0) {
 		throw std::out_of_range("Index out of bounds");
 	}
 	else {
 		LinkedListNS::Node* newNode = new LinkedListNS::Node(data);
+		int counter = 0;
+		LinkedListNS::Node* current = head;
+		LinkedListNS::Node* previous = NULL;
+		while (counter != index) {
+			previous = current;
+			current = current->getNext();
+			counter++;
+		}
+
+		// Inserting to HEAD
+		if (!previous) {
+			newNode->setNext(current);
+			head = newNode;
+			if (!head->getNext()) {
+				tail = head;
+			}
+		} else if (!current) { // INSERTING TAIL
+			previous->setNext(newNode);
+			tail = newNode;
+		}
+		else { // Inserting MIDDLE
+			previous->setNext(newNode);
+			newNode->setNext(current);
+		}
+		++length;
 	}
 }
 LinkedListNS::NodeData LinkedListNS::LinkedList::remove(int index) {
 	// TODO: Test ArrayOutOfBounds
-	if (this->size() <= index || index <= this->size()) {
+	if (this->size() <= index || index < 0) {
 		throw std::out_of_range("Index out of bounds");
 	} else {
 		int counter = 0;
 		LinkedListNS::Node* current = head;
 		LinkedListNS::Node* previous = NULL;
-		while (current->getNext() || counter != index) {
+		while (counter != index) {
 			previous = current;
 			current = current->getNext();
 			counter++;
@@ -64,15 +91,19 @@ LinkedListNS::NodeData LinkedListNS::LinkedList::remove(int index) {
 		if (!previous) { // Deleting HEAD
 			// TODO: Will this work in a one element list?
 			head = current->getNext();
+			if (!current->getNext()) {
+				tail = head;
+			}
 			delete current;
 			current = NULL;
 		}
 		else if (!current->getNext()) { // Deleting TAIL
 			previous->setNext(0);
+			tail = previous;
 			delete current;
 			current = NULL;
 		}
-		else {
+		else { // Deleting middle
 			previous->setNext(current->getNext());
 			delete current;
 			current = NULL;
@@ -82,6 +113,27 @@ LinkedListNS::NodeData LinkedListNS::LinkedList::remove(int index) {
 	}
 }
 
+LinkedListNS::NodeData LinkedListNS::LinkedList::get(int index) {
+	// TODO: Test ArrayOutOfBounds
+	if (this->size() <= index || index < 0) {
+		throw std::out_of_range("Index out of bounds");
+	}
+	else {
+		int counter = 0;
+		LinkedListNS::Node* current = head;
+		while (current->getNext() && counter != index) {
+			current = current->getNext();
+			counter++;
+		}
+		return current->getData();
+	}
+}
+
 int LinkedListNS::LinkedList::size() {
 	return static_cast<int>(this->length);
+}
+
+// TODO: Does this work as expected?
+void LinkedListNS::LinkedList::clear() {
+	this->~LinkedList();
 }

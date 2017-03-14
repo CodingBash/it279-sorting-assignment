@@ -1,47 +1,80 @@
-#include "Queue.h"
-#include "Stack.h"
-#include <iostream>
+#include "LinkedList.h"
 #include <iostream>
 
 int main() {
 	/*
 	* Test Stack
 	*/
-	StackNS::Stack stack = StackNS::Stack();
-	auto createStackData = [](int one, int two, char c) -> StackNS::NodeStackData {
-		StackNS::NodeStackData data = StackNS::NodeStackData();
-		data.integer_one = one;
-		data.integer_two = two;
-		data.character = c;
+	LinkedListNS::LinkedList list = LinkedListNS::LinkedList();
+	auto createData = [](int number) -> LinkedListNS::NodeData {
+		LinkedListNS::NodeData data = LinkedListNS::NodeData();
+		data.number = number;
 		return data;
 	};
-	stack.push(createStackData(1, 2, 'c'));
-	stack.push(createStackData(2, 4, 'c'));
-	stack.push(createStackData(3, 2, 'c'));
-	/*
-	while (stack.length != 0) {
-		StackNS::NodeStackData result = stack.pop();
-		std::cout << result.integer_one << std::endl;
-	}
-	*/
 
 	/*
-	* Test Queue
+		Test push_back, get, and remove of 100 items
 	*/
-	QueueNS::Queue queue = QueueNS::Queue();
-	auto createQueueData = [](std::string name) -> QueueNS::NodeQueueData {
-		QueueNS::NodeQueueData data = QueueNS::NodeQueueData();
-		data.name = name;
-		return data;
-	};
-	queue.queue(createQueueData("customer 1"));
-	queue.queue(createQueueData("customer 2"));
-	queue.queue(createQueueData("customer 3"));
-	/*
-	while (queue.length != 0) {
-		QueueNS::NodeQueueData result = queue.dequeue();
-		std::cout << result.name << std::endl;
+	for (int i = 0; i < 100; i++) {
+		list.push_back(createData(i));
 	}
+	for (int i = 0; i < list.size(); ++i) {
+		std::cout << list.get(i).number << std::endl;
+	}
+	for (int i = list.size() - 1; i >= 0; --i) {
+		std::cout << list.remove(i).number << std::endl;
+	}
+
+	/*
+		Test push_back, get, and remove of 1 items
 	*/
+	list.push_back(createData(0));
+	for (int i = 0; i < list.size(); ++i) {
+		std::cout << list.get(i).number << std::endl;
+	}
+	for (int i = list.size() - 1; i >= 0; --i) {
+		std::cout << list.remove(i).number << std::endl;
+	}
+
+	/*
+		Test insert, get, and clear of 100 items
+	*/
+	for (int i = 0; i < 100; i++) {
+		list.insert(i, createData(i));
+	}
+	for (int i = 0; i < list.size(); ++i) {
+		std::cout << list.get(i).number << std::endl;
+	}
+	list.clear();
+
+	/*
+		Test insert, get, and clear of 1 item
+	*/
+	list.insert(0, createData(0));
+	for (int i = 0; i < list.size(); ++i) {
+		std::cout << list.get(i).number << std::endl;
+	}
+	list.clear();
+
+	/*
+		Test destructor of 100 items
+	*/
+	for (int i = 0; i < 100; i++) {
+		list.insert(i, createData(i));
+	}
+	list.~LinkedList();
+
+	/*
+		Test destructor of 1 item
+	*/
+	list = LinkedListNS::LinkedList();
+	list.push_back(createData(1));
+	list.~LinkedList();
+
+	/*
+		Test destructor of 0 items
+	*/
+	list = LinkedListNS::LinkedList();
+	list.~LinkedList();
 	system("PAUSE");
 }

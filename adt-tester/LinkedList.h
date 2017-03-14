@@ -14,6 +14,7 @@ namespace LinkedListNS {
 		void push_back(LinkedListNS::NodeData data);
 		void insert(int index, LinkedListNS::NodeData data);
 		LinkedListNS::NodeData remove(int index);
+		LinkedListNS::NodeData get(int index);
 		void clear();
 		int size();
 		LinkedList();
