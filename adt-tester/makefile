@@ -3,23 +3,17 @@ CFLAGS=-std=c++11 -g -Wall
 
 all: main
 
-main: NodeQueue.o NodeStack.o AdtTester.o Queue.o Stack.o
-	${CC} ${CFLAGS} -o main NodeQueue.o NodeStack.o AdtTester.o Queue.o Stack.o
+main: Node.o AdtTester.o LinkedList.o
+	${CC} ${CFLAGS} -o main Node.o AdtTester.o LinkedList.o
 
-NodeQueue.o: NodeQueue.cpp NodeQueue.h
-	${CC} ${CFLAGS} -c NodeQueue.cpp
-
-NodeStack.o: NodeStack.cpp NodeStack.h
-	${CC} ${CFLAGS} -c NodeStack.cpp
+Node.o: Node.cpp Node.h
+	${CC} ${CFLAGS} -c Node.cpp
 
 AdtTester.o: AdtTester.cpp
 	${CC} ${CFLAGS} -c AdtTester.cpp
 
-Queue.o: Queue.cpp Queue.h
-	${CC} ${CFLAGS} -c Queue.cpp
-
-Stack.o: Stack.cpp Stack.h
-	${CC} ${CFLAGS} -c Stack.cpp
+LinkedList.o: LinkedList.cpp LinkedList.h
+	${CC} ${CFLAGS} -c LinkedList.cpp
 
 clean:
 	rm -f *.o *.out main
