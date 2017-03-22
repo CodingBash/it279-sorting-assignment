@@ -3,7 +3,7 @@
 #include<string>
 #include<cmath>
 #include<sstream>
-#include"InsertionSort.h"
+#include"InsertionSort.cpp"
 using namespace std;
 
 void stringToIntVector(string);
@@ -15,6 +15,7 @@ vector<int> dataList;
 int main()
 {
   string sequence;
+  int largestGapSequence;
   while(dataList.empty())
     {
       cout<<"Enter number sequence to be shell sorted:";
@@ -24,8 +25,9 @@ int main()
   largestGapSequence = determineGapSequence();
   for(int i=largestGapSequence; i>0;i--)
     {
-      insertionSort( (int)pow(2,i)-1);
+      insertionSort((int)pow(2,i)-1);
     }
+  
   return 0;
 }
 
@@ -38,7 +40,7 @@ int determineGapSequence()
     {
       int possibleValue= pow(2,i)-1; //(2^i)-1 From Hibbard's recommended increments
       if(possibleValue > dataList.size())
-	      return (i-1);
+	return (i-1);
     }
   return 0;//if dataList is empty
 }
@@ -50,22 +52,22 @@ void stringToIntVector(string sequence)
     {
       size_t pos = sequence.find(" ");
       if(sequence.find(" ")!= string::npos)
-	      {
-	        stringstream convert(sequence);
-      	  if( (convert >> returnable))
-	          {
-	            dataList.push_back(returnable);
-	          }		
-	      }
+	{
+	  stringstream convert(sequence);
+	  if( (convert >> returnable))
+	    {
+	      dataList.push_back(returnable);
+	    }		
+	}
       else if(sequence.size() != 0)
-	      {
-	        stringstream convert(sequence);
-	        if( (convert >> returnable))
-	          {
-	            dataList.push_back(returnable);
-	          }
-	        return;
-	      }
+	{
+	  stringstream convert(sequence);
+	  if( (convert >> returnable))
+	    {
+	      dataList.push_back(returnable);
+	    }
+	  return;
+	}
     }
 }
 
@@ -77,21 +79,22 @@ void insertionSort(int sortSize)
   for(int i=0; i<dataList.size()+sortSize;)
     {
       for(int j=0; j<sortSize;j++)
-	    {
-	      if(data.at(j+i))
-	        temp.push_back(dataList.at(j+i));
-	      else
-	        break;
-	    }
-      sorter.add(temp);
-      temp = sorter.sort();
+	{
+	  if(dataList.at(j+i))
+	    temp.push_back(dataList.at(j+i));
+	  else
+	    break;
+	}
+      sorter.add(&temp);
+      temp = &sorter.sort();
       for(int j=0; j<temp.size(); j++)
-      {
-        if(data.at(j+i))
-          data.at(j+i)=temp.at(j);
-	      else
-	        break;
-	    }
+	{
+	  if(dataList.at(j+i))
+	    dataList.at(j+i)=temp.at(j);
+	  else
+	    break;
+	}
+      temp.erase(temp.begin, temp.end);
       i+=sortSize;
     }  
 }
