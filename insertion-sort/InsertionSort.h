@@ -5,7 +5,7 @@
 namespace Sort {
 	class InsertionSort {
 	public:
-		LinkedListNS::LinkedList sort(LinkedListNS::LinkedList unsortedList);
+		static LinkedListNS::LinkedList* sort(LinkedListNS::LinkedList& unsortedList);
 	};
 }
 
