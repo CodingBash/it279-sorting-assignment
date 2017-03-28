@@ -5,10 +5,11 @@
 namespace MergeSortNS {
 	class LinkedList {
 	public:
+		Node* a;
 		MergeSortNS::Node* mergeLists(MergeSortNS::Node* a, MergeSortNS::Node* b);
 		void splitList(MergeSortNS::Node* source, MergeSortNS::Node** frontNode, MergeSortNS::Node** backNode);
 		void mergeSort(MergeSortNS::Node** headRef);
 		void push(MergeSortNS::Node** headNodeRef, long new_data);
 	};
 }
-#endif
+#endif 
