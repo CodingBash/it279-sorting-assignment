@@ -4,11 +4,11 @@
 #include <fstream>
 #include <istream>
 #include <string>
-#include "../adt-tester/LinkedList.h"
+#include "LinkedList.h"
 namespace InsertionSortNS {
 	class Output {
 	public:
-		void outputData(LinkedListNS::LinkedList* list);
+		void outputData(InsertionSortNS::LinkedList* list);
 	};
 }
 #endif // !GUARD_OUTPUT_MS_H

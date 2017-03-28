@@ -1,12 +1,12 @@
 #include "InsertionSort.h"
 
-LinkedListNS::LinkedList* Sort::InsertionSort::sort(LinkedListNS::LinkedList& unsortedList)
+InsertionSortNS::LinkedList* InsertionSortNS::InsertionSort::sort(InsertionSortNS::LinkedList& unsortedList)
 {
 	/*
 		Copy unsorted list to sorted list
 		NOTE: Initiated LinkedList as pointer to prevent automatic destructor call at end of scope.
 	*/
-	LinkedListNS::LinkedList* newList = new LinkedListNS::LinkedList();
+	InsertionSortNS::LinkedList* newList = new InsertionSortNS::LinkedList();
 	for (int i = 0; i < unsortedList.size(); i++) {
 		newList->push_back(unsortedList.get(i));
 	}
@@ -15,7 +15,7 @@ LinkedListNS::LinkedList* Sort::InsertionSort::sort(LinkedListNS::LinkedList& un
 		Actual algorithm implementation
 	*/
 	int j;
-	LinkedListNS::NodeData temp;
+	InsertionSortNS::NodeData temp;
 	for (int i = 1; i < newList->size(); i++) {
 		j = i;
 		while (j > 0 && newList->get(j - 1).number > newList->get(j).number) {

@@ -1,8 +1,8 @@
 #include "Input.h"
 
-LinkedListNS::LinkedList * MergeSortNS::Input::retrieveData()
+InsertionSortNS::LinkedList * InsertionSortNS::Input::retrieveData()
 {
-	LinkedListNS::LinkedList* inputList = new LinkedListNS::LinkedList();
+	InsertionSortNS::LinkedList* inputList = new InsertionSortNS::LinkedList();
 	
 	//keep track of file names
 	std::string fileNameIn;
@@ -32,7 +32,7 @@ LinkedListNS::LinkedList * MergeSortNS::Input::retrieveData()
 *Converts a string input into a long and adds it to the LinkedList named dataList
 *
 */
-LinkedListNS::NodeData MergeSortNS::Input::addStringToLinkedList(std::string sequence)
+InsertionSortNS::NodeData InsertionSortNS::Input::addStringToLinkedList(std::string sequence)
 {
 	int storable = 0;
 	if (sequence.size() != 0)
@@ -41,7 +41,7 @@ LinkedListNS::NodeData MergeSortNS::Input::addStringToLinkedList(std::string seq
 		if (!(convert >> storable));
 		else
 		{
-			LinkedListNS::NodeData temp;
+			InsertionSortNS::NodeData temp;
 			temp.number = storable;
 			//std::cout << temp.number << std::endl;
 			return temp;

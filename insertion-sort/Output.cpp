@@ -1,6 +1,6 @@
 #include "Output.h"
 
-void InsertionSortNS::Output::outputData(LinkedListNS::LinkedList * list)
+void InsertionSortNS::Output::outputData(InsertionSortNS::LinkedList * list)
 {
 	std::string fileNameOut;
 	std::cout << "Enter the name of the OUTPUT file: " << std::endl;

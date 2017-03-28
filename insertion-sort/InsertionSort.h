@@ -1,11 +1,11 @@
 #ifndef GUARD_INSERTIONSORT_H
 #define GUARD_INSERTIONSORT_H
-#include "../adt-tester/LinkedList.h"
+#include "LinkedList.h"
 
-namespace Sort {
+namespace InsertionSortNS {
 	class InsertionSort {
 	public:
-		static LinkedListNS::LinkedList* sort(LinkedListNS::LinkedList& unsortedList);
+		static InsertionSortNS::LinkedList* sort(InsertionSortNS::LinkedList& unsortedList);
 	};
 }
 

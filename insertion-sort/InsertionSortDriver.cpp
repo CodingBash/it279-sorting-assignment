@@ -1,4 +1,4 @@
-#include "../adt-tester/LinkedList.h"
+#include "LinkedList.h"
 #include "InsertionSort.h"
 #include "Input.h"
 #include "Output.h"
@@ -7,9 +7,9 @@
 #include <iostream>
 
 int main() {
-	LinkedListNS::LinkedList* inputList = MergeSortNS::Input().retrieveData();
+	InsertionSortNS::LinkedList* inputList = InsertionSortNS::Input().retrieveData();
 	
-	LinkedListNS::LinkedList* sortedList = Sort::InsertionSort::sort(*inputList);
+	InsertionSortNS::LinkedList* sortedList = InsertionSortNS::InsertionSort::sort(*inputList);
 
 	InsertionSortNS::Output().outputData(sortedList);
 }

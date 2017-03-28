@@ -1,6 +1,6 @@
 #ifndef GUARD_INPUT_IS_H
 #define GUARD_INPUT__IS_H
-#include "../adt-tester/LinkedList.h"
+#include "LinkedList.h"
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -9,12 +9,12 @@
 #include <cstdlib>
 #include <sstream>
 
-namespace MergeSortNS {
+namespace InsertionSortNS {
 	class Input {
 	public:
-		LinkedListNS::LinkedList* retrieveData();
+		InsertionSortNS::LinkedList* retrieveData();
 	private:
-		LinkedListNS::NodeData addStringToLinkedList(std::string sequence);
+		InsertionSortNS::NodeData addStringToLinkedList(std::string sequence);
 	};
 }
 
