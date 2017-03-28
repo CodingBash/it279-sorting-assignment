@@ -4,7 +4,7 @@
 namespace LinkedListNS {
 	struct NodeData {
 	public:
-		int number;
+		long number;
 	};
 
 	class Node {
