@@ -8,9 +8,11 @@
 #include <cstdio>
 #include <cstdlib>
 
-class Input {
-public:
-	MergeSortNS::LinkedList* retrieveData();
-};
+namespace MergeSortNS {
+	class Input {
+	public:
+		MergeSortNS::LinkedList* retrieveData();
+	};
+}
 
 #endif

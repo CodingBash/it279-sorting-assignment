@@ -1,6 +1,6 @@
 #include "Input.h"
 
-MergeSortNS::LinkedList * Input::retrieveData()
+MergeSortNS::LinkedList * MergeSortNS::Input::retrieveData()
 {
 	MergeSortNS::LinkedList* list = new MergeSortNS::LinkedList();
 	
