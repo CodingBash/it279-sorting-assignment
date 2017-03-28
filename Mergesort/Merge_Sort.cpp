@@ -1,5 +1,7 @@
 #include <iostream>
 #include <fstream>
+#include <istream>
+#include <string>
 #include <cstdio>
 #include <cstdlib>
 
