@@ -1,5 +1,5 @@
-#ifndef GUARD_QUEUE_H
-#define GUARD_QUEUE_H
+#ifndef GUARD_LINKEDLIST_IS_H
+#define GUARD_LINKEDLIST_IS_H
 #include "Node.cpp"
 #include <cstdlib>
 #include <cstddef>

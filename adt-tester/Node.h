@@ -1,5 +1,5 @@
-#ifndef GUARD_NODEQUEUE_H
-#define GUARD_NODEQUEUE_H
+#ifndef GUARD_NODE_IS_H
+#define GUARD_NODE_IS_H
 
 namespace LinkedListNS {
 	struct NodeData {
