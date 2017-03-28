@@ -24,6 +24,7 @@ InsertionSortNS::LinkedList * InsertionSortNS::Input::retrieveData()
 	else
 	{
 		std::cout << "Unable to open \"" << fileNameIn << "\"" << std::endl;
+		return NULL;
 	}
 	return inputList;
 }

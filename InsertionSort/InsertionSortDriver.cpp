@@ -9,7 +9,9 @@
 int main() {
 	InsertionSortNS::LinkedList* inputList = InsertionSortNS::Input().retrieveData();
 	
-	InsertionSortNS::LinkedList* sortedList = InsertionSortNS::InsertionSort::sort(*inputList);
+	if (inputList != NULL) {
+		InsertionSortNS::LinkedList* sortedList = InsertionSortNS::InsertionSort::sort(*inputList);
 
-	InsertionSortNS::Output().outputData(sortedList);
+		InsertionSortNS::Output().outputData(sortedList);
+	}
 }
