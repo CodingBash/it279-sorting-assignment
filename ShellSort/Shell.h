@@ -5,7 +5,7 @@
 #include<string>
 #include<cmath>
 #include <cstdlib>
-#include"../insertion-sort/InsertionSort.cpp"
+#include"InsertionSort.cpp"
 using namespace std;
 
 
@@ -16,6 +16,8 @@ namespace ShellSort{
     static LinkedListNS::LinkedList* sort(LinkedListNS::LinkedList *inputList);
   private:
     static LinkedListNS::LinkedList* insertionSort(LinkedListNS::LinkedList *listToSort, int sorterSize);
+    static LinkedListNS::LinkedList* subList(LinkedListNS::LinkedList *listToSort, int sorterSize, int start);
+    static LinkedListNS::LinkedList* columnSort(LinkedListNS::LinkedList *listToSort, int sortSize, int start);
   };
 }
 #endif
