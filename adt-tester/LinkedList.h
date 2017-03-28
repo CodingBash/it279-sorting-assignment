@@ -1,6 +1,6 @@
 #ifndef GUARD_QUEUE_H
 #define GUARD_QUEUE_H
-#include "Node.h"
+#include "Node.cpp"
 #include <cstdlib>
 #include <cstddef>
 
@@ -19,6 +19,7 @@ namespace LinkedListNS {
 		int size();
 		LinkedList();
 		~LinkedList();
+		void merge(LinkedListNS::LinkedList* other);
 	};
 }
 

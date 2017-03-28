@@ -137,3 +137,12 @@ int LinkedListNS::LinkedList::size() {
 void LinkedListNS::LinkedList::clear() {
 	this->~LinkedList();
 }
+
+
+void LinkedListNS::LinkedList::merge(LinkedListNS::LinkedList* other)
+{
+  for(int i=0; other->size()!=0;i++)
+    {
+      this->push_back(other->remove(0));
+    }
+}
