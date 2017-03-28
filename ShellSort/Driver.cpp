@@ -4,16 +4,18 @@
 #include<fstream>
 #include<stdio.h>
 #include"Shell.cpp"
+
+
 using namespace std;
 
-
 LinkedListNS::NodeData addStringToLinkedList(string);
-void print(char *outputFile);
-LinkedListNS::LinkedList *dataList;
+void print(char *outputFile, LinkedListNS::LinkedList *dataList);
+
 
 
 int main()
 {
+  LinkedListNS::LinkedList *dataList = new LinkedListNS::LinkedList();
   string sequence;
   char filename[20];
   char outputFilename[20];
@@ -22,21 +24,27 @@ int main()
   cout << "Enter Output Filename: ";
   cin >>outputFilename;
   ifstream dataInputForSorting (filename);
-    if(dataInputForSorting.is_open())
+  if(dataInputForSorting.is_open())
     {
-      while(!dataInputForSorting.eof())
+      cout<<"\""<<filename<< "\" is open\n";
+      while(!(dataInputForSorting.eof()))
 	{
 	  getline(dataInputForSorting, sequence);
-	  dataList->push_back( addStringToLinkedList(sequence) );
+	  LinkedListNS::NodeData temp =addStringToLinkedList(sequence);
+	  if(temp.number!=0l)
+	    dataList->push_back(temp );
 	}
+     
       dataInputForSorting.close();
+      cout<<"\""<<filename<<"\" has been closed\n";
                 //For ShellSort
-      dataList = ShellSort::Shell::sort(dataList);
-      print(outputFilename);
+      LinkedListNS::LinkedList *sortedList = ShellSort::Shell::sort(dataList);
+      print(outputFilename, sortedList);
+      sortedList->clear();
     }
   else 
     {
-      cout<< "Unable to open \"" << filename << "\"";
+      cout<< "Unable to open \"" << filename << "\"\n";
     }
   return 0;
 }
@@ -46,31 +54,35 @@ int main()
  **/
 LinkedListNS::NodeData addStringToLinkedList(string sequence)
 {
-	int storable = 0;
-	if (sequence.size() != 0)
+  int storable = 0;
+  if (sequence.size() != 0)
+    {
+      stringstream convert(sequence);
+      if (!(convert >> storable));
+      else
 	{
-		std::stringstream convert(sequence);
-		if (!(convert >> storable));
-		else
-		{
-			LinkedListNS::NodeData temp;
-			temp.number = storable;
-			return temp;
-		}
+	  LinkedListNS::NodeData temp;
+	  temp.number = storable;
+	  return temp;
 	}
+    }
+  LinkedListNS::NodeData temp;
+  temp.number = 0l;
+  return temp;
 }
 
 /**
  * Takes an incoming LinkedList and prints each element to the console
  *
  */
-void print(char* outputFile)
+void print(char* outputFile, LinkedListNS::LinkedList* dataList)
 {
-  freopen(outputFile,"a",stdout);
-  for(int i=1; i<=dataList->size()-1;i++)
+  cout<<"Writing...";
+  ofstream outToFile(outputFile,ios::out);
+  for(int i=0; i<dataList->size();i++)
     {
-      printf(dataList->get(i).number+"\n");
+      outToFile<<dataList->get(i).number<< '\n';
     }
+  cout<<"Complete\n";
   fclose(stdout);
 }
-
