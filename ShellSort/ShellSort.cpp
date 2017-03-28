@@ -1,11 +1,11 @@
-#include "Shell.h"
+#include "ShellSort.h"
 using namespace std;
 
 
-LinkedListNS::LinkedList* ShellSort::Shell::sort(LinkedListNS::LinkedList*inputList)
+InsertionSortNS::LinkedList* ShellSortNS::ShellSort::sort(InsertionSortNS::LinkedList*inputList)
 {
   cout<<"Sorting...";
-  LinkedListNS::LinkedList* listToSort=new LinkedListNS::LinkedList();
+  InsertionSortNS::LinkedList* listToSort=new InsertionSortNS::LinkedList();
   int largestGapSequence=0;
   for(int i=0; i<inputList->size(); i++)
     {
@@ -30,12 +30,12 @@ LinkedListNS::LinkedList* ShellSort::Shell::sort(LinkedListNS::LinkedList*inputL
 }
 
 
-LinkedListNS::LinkedList* ShellSort::Shell::insertionSort(LinkedListNS::LinkedList *listToSort,int sortSize)
+InsertionSortNS::LinkedList* ShellSortNS::ShellSort::insertionSort(InsertionSortNS::LinkedList *listToSort,int sortSize)
 {
-  LinkedListNS::LinkedList* sortedList= new LinkedListNS::LinkedList();
+  InsertionSortNS::LinkedList* sortedList= new InsertionSortNS::LinkedList();
   for(int i=0; i<listToSort->size() + sortSize;)
     {
-      LinkedListNS::LinkedList* temp = subList(listToSort,sortSize,i);
+      InsertionSortNS::LinkedList* temp = subList(listToSort,sortSize,i);
       sortedList->merge(temp);
       i+=sortSize;
     }  
@@ -49,9 +49,9 @@ LinkedListNS::LinkedList* ShellSort::Shell::insertionSort(LinkedListNS::LinkedLi
 }
 
 
-LinkedListNS::LinkedList* ShellSort::Shell::subList(LinkedListNS::LinkedList* listToSort, int sortSize, int start) 
+InsertionSortNS::LinkedList* ShellSortNS::ShellSort::subList(InsertionSortNS::LinkedList* listToSort, int sortSize, int start)
 {
-  LinkedListNS::LinkedList* temp = new LinkedListNS::LinkedList();
+  InsertionSortNS::LinkedList* temp = new InsertionSortNS::LinkedList();
   for(int i=0; i<sortSize; i++)
     {
       if(start<listToSort->size())
@@ -61,15 +61,15 @@ LinkedListNS::LinkedList* ShellSort::Shell::subList(LinkedListNS::LinkedList* li
   return temp;
 }
 
-LinkedListNS::LinkedList* ShellSort::Shell::columnSort(LinkedListNS::LinkedList* listToSort, int sortSize, int start)
+InsertionSortNS::LinkedList* ShellSortNS::ShellSort::columnSort(InsertionSortNS::LinkedList* listToSort, int sortSize, int start)
 {
-  LinkedListNS::LinkedList* temp = new LinkedListNS::LinkedList();
+  InsertionSortNS::LinkedList* temp = new InsertionSortNS::LinkedList();
   for(int i=start; i<listToSort->size();)
     {     
       temp->push_back(listToSort->get(i));
       i+=sortSize;
     }
-  temp = Sort::InsertionSort::sort(*temp);
+  temp = InsertionSortNS::InsertionSort::sort(*temp);
   for(int i=start, count =0; i<listToSort->size();count++)
     {
       listToSort->remove(i);
