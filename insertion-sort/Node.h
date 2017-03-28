@@ -1,12 +1,8 @@
 #ifndef GUARD_NODE_IS_H
 #define GUARD_NODE_IS_H
+#include "NodeData.h"
 
 namespace InsertionSortNS {
-	struct NodeData {
-	public:
-		long number;
-	};
-
 	class Node {
 	private:
 		NodeData data;
@@ -19,4 +15,6 @@ namespace InsertionSortNS {
 		Node(NodeData data);
 	};
 }
+
+
 #endif
