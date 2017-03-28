@@ -4,102 +4,15 @@
 #include <string>
 #include <cstdio>
 #include <cstdlib>
-
+#include "LinkedList.h"
 using namespace std;
 
 /* Node struct used for linked list implementation */
 
-struct node
-{
-    	long data;
-	struct node* next;
-};
-
- 
-struct node* mergeLists(node* a, node* b);
-void splitList(node* source, node** frontNode, node** backNode);
- 
-/* sorts through the linked list */
-
-void mergeSort(struct node** headRef)
-{
-/* In this method only pointers are changed not the actually data of the node */
-	node* head = *headRef;
-    	node* a;
-    	node* b;
-    	if ((head == NULL) || (head->next == NULL))
-    	{
-       		return;
-    	}
-    	
-    	splitList(head, &a, &b);
-    	mergeSort(&a);
-    	mergeSort(&b);
-    	*headRef = mergeLists(a, b);
-}
-/* merge the sorted linked lists */
-node* mergeLists(struct node* a, struct node* b)
-{
-    node* result = NULL;
-    if (a == NULL)
-        return b;
-    else if (b==NULL)
-        return a;
-    if (a->data <= b->data)
-    {
-        result = a;
-        result->next = mergeLists(a->next, b);
-    }
-    else
-    {
-        result = b;
-        result->next = mergeLists(a, b->next);
-    }
-    return result;
-}
- 
-/* Split the nodes of the given list into front and back halves*/
-void splitList(node* origin, node** frontNode, node** backNode)
-{
-    node* top;
-    node* bottom;
-    if (origin==NULL || origin->next==NULL)
-    {
-        *frontNode = origin;
-        *backNode = NULL;
-    }
-    else
-    {
-        bottom = origin;
-        top = origin->next;
-        while (top != NULL)
-        {
-            top = top->next;
-            if (top != NULL)
-            {
-                bottom = bottom->next;
-                top = top->next;
-            }
-        }
-        *frontNode = origin;
-        *backNode = bottom->next;
-        bottom->next = NULL;
-    }
-}
- 
- 
-/* push nodes into the list */
-void push(node** headNodeRef, long new_data)
-{
-    node *new_node = new node;
-    new_node->data = new_data;
-    new_node->next = (*headNodeRef);
-    (*headNodeRef)    = new_node;
-}
-
-
 int main()
 {
+	MergeSortNS::LinkedList* list = new MergeSortNS::LinkedList();
+
 	//keep track of file names
 	string fileNameIn;
 	string fileNameOut;
@@ -117,26 +30,26 @@ int main()
 	
 	//used to read in all of the numbers in the txt file.
 	long nums;
-	node* a = NULL;
+	MergeSortNS::Node* a = NULL;
 	
 	// Read all values into the linked list.
 	while(fileIn >> nums)
 	{
-		push(&a, nums);
+		list->push(&a, nums);
 	}
 	
 	//close the input file.
 	fileIn.close();
 	
 	//use merge sort technique to sort the newly created linked list.
-	mergeSort(&a);
+	list->mergeSort(&a);
 	
 	cout << "Enter the name of the OUTPUT file: " << endl;
 	cin >> fileNameOut;
 	ofstream fileOut;
 	fileOut.open(fileNameOut);
 	
-	node *node = a;
+	MergeSortNS::Node* node = a;
 	
 	/*go through every node in the list and print its data. The nodes should
 		be sorted from least to greatest according to their data value */
