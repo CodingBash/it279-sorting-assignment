@@ -1,12 +1,14 @@
+#include"../adt-tester/LinkedList.cpp"
 #include<string>
 #include<sstream>
 #include<fstream>
+#include<stdio.h>
 #include"Shell.cpp"
-
 using namespace std;
 
+
 LinkedListNS::NodeData addStringToLinkedList(string);
-void print(string);
+void print(char *outputFile);
 LinkedListNS::LinkedList *dataList;
 
 
@@ -59,20 +61,16 @@ LinkedListNS::NodeData addStringToLinkedList(string sequence)
 }
 
 /**
- * Takes the stored LinkedList and writes each element to a file
+ * Takes an incoming LinkedList and prints each element to the console
  *
  */
-void print(string outputFilename)
+void print(char* outputFile)
 {
-  ofstream outputFile(outputFilename);
-  if(outputFile.is_open())
+  freopen(outputFile,"a",stdout);
+  for(int i=1; i<=dataList->size()-1;i++)
     {
-     for(int i=1; i<=dataList->size()-1;i++)
-       {
-	 outputFile<< dataList->get(i).number<<'\n';
-       }
-     outputFile.close();
+      printf(dataList->get(i).number+"\n");
     }
-    else
-      cout<< "Unable to open file"; 
+  fclose(stdout);
 }
+
